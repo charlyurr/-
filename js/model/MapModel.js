@@ -45,18 +45,43 @@ export class MapModel {
    * Fetches data
    */
   async fetchData() {
-    // Load features from the vector source
-    const features = await new Promise((resolve, reject) => {
-      this.vectorSource.once("change", (event) => {
-        if (this.vectorSource.getState() === "ready") {
-          resolve(this.vectorSource.getFeatures());
-        } else {
-          reject("Error loading features");
-        }
+    try {
+      // Load features from the vector source
+      const features = await new Promise((resolve, reject) => {
+        this.vectorSource.once("change", (event) => {
+          if (this.vectorSource.getState() === "ready") {
+            resolve(this.vectorSource.getFeatures());
+          } else {
+            reject("Error loading features");
+          }
+        });
       });
-    });
-    // console.log("features: ", features);
-    return (this.data = features);
+      // console.log("features: ", features[0].values_.PARK_NAME);
+      // //  I want to return
+      // // "PARK_NAME": as Park Name
+      // // "LU_PARK_TYPE": as Park Type,
+      // // "ACS_ADR": as Access Address,
+      // // "PLAY_EQPM": as Play Equip,
+      // // "SUB_AREA":  as Sub Area
+      // return (this.data = features[0].values_.PARK_NAME);
+      // Map features to objects with specific properties
+      const result = features.map((feature) => ({
+        "Park Name": feature.values_.PARK_NAME,
+        "Park Type": feature.values_.LU_PARK_TYPE,
+        "Access Address": feature.values_.ACS_ADR,
+        "Play Equip": feature.values_.PLAY_EQPM,
+        "Sub Area": feature.values_.SUB_AREA,
+      }));
+
+      // console.log("data: ", data); // data being rendered
+
+      this.data.push(result);
+
+      return result;
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      return []; // Return empty array if an error occurs
+    }
   }
 
   /**
@@ -66,6 +91,8 @@ export class MapModel {
   getRecords() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
+
+    console.log("this.data", this.data); // available
     return this.data.slice(startIndex, endIndex);
   }
 

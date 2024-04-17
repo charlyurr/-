@@ -43,7 +43,7 @@ export class MapView {
      */
     this.tableView = document.getElementById("table-view");
     this.closeButton = document.getElementById("close-button");
-    this.tableBody = this.tableView.querySelector("table-body");
+    this.tableBody = this.tableView.querySelector("tbody");
     this.tableIcon = document.getElementById("table-icon");
     this.bindEvents();
   }
@@ -93,13 +93,71 @@ export class MapView {
    * @param {Array} records - An array of records.
    */
   // FIXME: this seems not to be used
+  // displayRecords(records) {
+  //   records.forEach((record) => {
+  //     const row = document.createElement("tr");
+  //     row.innerHTML = `<td>${record}</td>`;
+  //     this.tableBody.appendChild(row);
+  //   });
+  // }
+
   displayRecords(records) {
-    records.forEach((record) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td>${record}</td>`;
-      this.tableBody.appendChild(row);
-    });
+    try {
+      // Clear existing table rows
+      this.tableBody.innerHTML = "";
+
+      // Render each record in a table row
+      records.forEach((record) => {
+        const row = document.createElement("tr");
+
+        // Iterate over the keys of the record object
+        Object.keys(record).forEach((key) => {
+          const cell = document.createElement("td");
+          cell.textContent = record[key]; // Set cell content to the value of the current key
+          row.appendChild(cell);
+        });
+
+        this.tableBody.appendChild(row);
+      });
+    } catch (error) {
+      throw new Error(`Failed to display records`, error);
+    }
   }
+
+  // // Modified displayRecords function to render records in a table
+  // displayRecords(records) {
+  //   console.log("records: ", records); // FIXdME: Records is empty
+  //   try {
+  //     // Clear existing table rows
+  //     this.tableBody.innerHTML = "";
+
+  //     // Render each record in a table row
+  //     records.forEach((record) => {
+  //       console.log("record: ", record); // FIXdME: reaching here
+  //       const row = document.createElement("tr");
+  //       console.log("row", row); // multiple objects as <td> Object Object </td>
+  //       Object.values(record).forEach((value) => {
+  //         // console.log("value: ", value); // getting here
+  //         /**
+  //          * each value now has the following:
+  //          *  "Park Name",
+  //          *  "Park Type",
+  //          *  "Access Address",
+  //          *  "Play Equip",
+  //          *  "Sub Area",
+  //          * but row has object
+  //          */
+  //         const cell = document.createElement("td");
+  //         cell.textContent = value;
+  //         row.appendChild(cell);
+  //       });
+  //       console.log("row: ", row); // why is row an object. I am expecting to disply this as a table
+  //       this.tableBody.appendChild(row);
+  //     });
+  //   } catch (error) {
+  //     throw new Error(`Failed to display records`, error);
+  //   }
+  // }
 
   /**
    * Loads records from the model.

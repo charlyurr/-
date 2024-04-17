@@ -41,11 +41,12 @@ export class MapController {
       this.mapView.tableView.style.display = "none";
       this.bindEvents();
       this.mapModel.fetchData();
-
       this.mapView.renderMap(this.mapModel);
       // Render GeoJSON data on the map
       this.mapView.renderGeoJSONFeatures(this.mapModel);
       //
+      // this.mapView.displayRecords(this.mapModel);
+      console.log("view this.mapModel: ", this.mapModel); // FIXME: empty
     } catch (error) {
       throw new Error();
     }
@@ -65,7 +66,14 @@ export class MapController {
    */
   handleLoadMoreRecords() {
     this.mapModel.loadMoreRecords();
-    this.mapView.displayRecords(this.mapModel.getRecords());
+    this.mapView.displayRecords(this.mapModel.data[0]);
+    // console.log("this.mapModel.getRecords(): ", this.mapModel); // FIXdME: empty
+    // // console.log("this.mapModel.getRecords(): ", this.mapModel.data); // FIXdME: empty
+    // console.log("handleLoadMoreRecords(this.mapModel): ", this.mapModel); //  data available here
+    // console.log(
+    //   "handleLoadMoreRecords(this.mapModel.data): ",
+    //   this.mapModel.data
+    // ); //  data available here
   }
 
   /**
