@@ -1,0 +1,308 @@
+@import "./../node_modules/ol/ol.css";
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+/* #map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+} */
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin-top: 70px; /* Move the map down by 10 pixels */
+  margin-left: 400px;
+  /* width: 100%; */
+  width: calc(100% - 400px); /* Adjust map width to fit remaining space */
+}
+/* Now we need some CSS to make the buttons look right. */
+#tools {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+#tools a {
+  display: inline-block;
+  padding: 0.5rem;
+  background: white;
+  cursor: pointer;
+}
+/* Style geojson data */
+.vector-layer-style {
+  fill: rgb(86, 160, 192);
+  stroke: white;
+}
+/* styles.css */
+#header-label-container {
+  padding-left: 10px; /* Adjust padding to move text inside towards the right */
+  align-content: flex-end;
+}
+
+#header-label {
+  padding-left: 10px; /* Adjust padding to move text inside towards the right */
+  align-items: center;
+  font-family: Arial, sans-serif; /* Specify the font type */
+  font-weight: normal; /* Specify a lighter font weight for slim characters */
+  /* color: brown; */
+}
+/* 
+/* styles.css */
+
+#side-panel-container {
+  width: 400px; /* Adjust width as needed */
+  max-height: calc(100% - 70px); /* Set maximum height to fill remaining space */
+  background-color: #f0f0f0;
+  position: fixed; /* Ensure the panel stays fixed in the viewport */
+  /* left: 0; Position the panel on the left side */
+  top: 70px; /* Adjust top position as needed */
+  /* margin-top: 70px; */
+  padding-left: 15px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling if content overflows */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack elements vertically */
+}
+
+#side-panel-header h1 {
+  font-size: 24px; /* Specify the font size */
+  font-family: Arial, sans-serif; /* Specify the font type */
+  font-weight: bold; /* Make the header bold */
+  margin-top: 20px; /* Add margin to the top */
+}
+
+#side-panel-summary-header {
+  font-size: 25px; /* Specify the font size */
+  font-family: Arial, sans-serif; /* Specify the font type */
+  font-weight: bold; /* Make the header bold */
+  margin-top: 10px; /* Add margin to the top */
+}
+
+#side-panel-summary-text {
+  font-size: 25px; /* Specify the font size */
+  font-family: Arial, sans-serif; /* Specify the font type */
+  color:rgb(76,76,76); /* Set the text color */
+  margin-top: 5px; /* Add margin to the top */
+  font-weight: normal;
+}
+/* I want to create 2 buttons on the side, which fits inside the side pane
+first one should have label'View Full Details, linking to a url qith full details,
+thensecond button bellow it should be Downlad, same width' */
+/* styles.css */
+#side-panel-buttons-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.button {
+  padding: 8px 16px; /* Adjust padding as needed */
+  margin-bottom: 8px; /* Add margin between buttons */
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 380px;
+  height: 60px;
+  padding-right: 20px;
+  margin-top: 15px;
+  font-size: 25px;
+  text-decoration: none; /* Remove underline */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#view-full-details-button {
+  background-color: rgb(86, 160, 192);
+  color: white;
+}
+
+#download-button {
+  background-color: white;
+  color: rgb(86, 160, 192);
+}
+
+#side-panel-details-summary {
+  margin-top: 20px; /* Add margin to the top */
+}
+
+.summary-item {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Align items vertically */
+  margin-bottom: 10px; /* Adjust margin between items */
+}
+
+.summary-label {
+  margin-left: 10px;
+  font-weight: bold; /* Make labels bold */
+  margin-right: 10px; /* Add margin to the right */
+  font-size: 24px;
+}
+
+.summary-value {
+  margin-left: 10px; /* Add margin to the left */
+  color: rgb(0,153,205);
+  font-size: 24px;
+}
+
+.summary-icon {
+  margin-right: 10px; /* Adjust margin between icon and text */
+  color: rgb(76,76,76);
+}
+
+.summary-icon {
+  margin-right: 10px; /* Add margin to the right of the icon */
+  font-size: 32px; /* Adjust icon size as needed */
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+   justify-self: flex-start;
+   text-align: left;
+  color: rgb(76,76,76);
+}
+
+/* Define CSS styles for the tooltip */
+.tooltip {
+  position: absolute;
+  z-index: 999;
+  background-color: rgba(249, 245, 245, 0.955);
+  color:  rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 24px;
+  display: none; /* Hide the tooltip by default */
+}
+
+/* Add animation for tooltip */
+.tooltip.show {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+#tools-container {
+  position: absolute;
+  top: 90px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the icons horizontally */
+  margin-right: 30px;
+}
+
+.tool-icon {
+  width: 10px;
+  height: 20px;
+  padding-right: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Adjust icon size as needed */
+}
+
+/* Style for the icons */
+#edit-icon {
+  margin-bottom: 30px; /* Add margin between icons */
+}
+
+#draw-icon {
+  margin-bottom: 30px; /* Add margin between icons */
+}
+#edit-icons-wrapper {
+  background-color: white;
+  /* padding: 40px; Adjust padding as needed */
+  padding: 20px;
+  width: 20px;
+  height: 60px;
+  align-items: center;
+}
+
+/* Search for park icons styling */
+.search-popup {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styling for viewing data in a table format */
+/* styles.css */
+#table-view {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 999;
+}
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff5e5e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Hide the table view by default */
+.hidden {
+  display: none;
+}
+
+
+/* styles.css */
+#table-icon {
+  width: 20px; /* Adjust icon width as needed */
+  height: 20px; /* Adjust icon height as needed */
+  padding-right: 5px;
+  cursor: pointer;
+  /* Add custom styling for the table icon */
+}
+
+#table-icon img {
+  width: 100%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+}

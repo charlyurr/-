@@ -1,0 +1,10 @@
+
+Data:
+
+Model: The model represents the application's data and business 
+logic. In this case, the model might include data about the 
+polygons themselves, such as their names.
+
+This folder contains files responsible for managing 
+the application's data. You might 
+have a geojsonModel.js file to handle GeoJSON data.

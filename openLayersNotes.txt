@@ -1,0 +1,115 @@
+MVC Model Plan
+Using the MVC pattern for websites, 
+requests are routed to a Controller that is responsible 
+for working with the Model to perform actions and/or retrieve data. 
+The Controller chooses the 
+	View to display and provides it with the Model. 
+		The View renders the final page, based on the data in the Model.
+
+Both the view and the controller depend on the model. 
+However, the model depends on neither the view nor the 
+controller. This is one of the key benefits of the separation. 
+This separation allows the model to be built and tested 
+independent of the visual presentation.
+
+MapController[application logic ](handling user input and updating the Model and View accordingly)
+	(control all the views)
+	(control all the data access)
+	download features
+	DragAndDrop features
+	modify features 
+	snapping features
+	drawnewfeatures
+MapView(user-interface)(files responsible for rendering the UI elements and handling user interactions.)
+	(define all the views)
+		render geojson features
+MapModel[data](application's data and business logic)
+	(define all the data handling)
+		-- fetch
+			local
+			remote
+		-- parse
+		-- get specific rows or columns
+	handle GeoJSON data
+
+
+Quick start
+    https://openlayers.org/doc/quickstart.html
+
+	https://openlayers.org/workshop/en/vector/drag-n-drop.html
+
+npm create ol-app webgis-cct-parks
+cd webgis-cct-parks
+npm start
+
+importing and rendering a geojson file in openlayers
+
+
+Hover:
+https://openlayers.org/en/latest/examples/select-hover-features.html
+
+Introduction to openlayers
+• Introduction to openlayers
+• Setting up everything to use openlayers
+	• Anatomy of web-mapping application
+	• Setting up the environment
+Preview
+	• Creating your first WebMap
+	• Debugging application
+
+• Projection in openlayers and Map properties
+	• Understanding Views
+	• Exploring Layers
+	• Information Overlays
+	• Interacting with Map
+	• Juggling with Map Controls
+• Visualising Raster layers
+	• Tiled Layer Sources Part 1
+	• Tiled Layer Sources Part 2
+	• Understanding Getters and Setters
+	• Developing Layer Switcher
+	• Working with Static Image
+• Visualising Vector layers
+	• Vector Tile Layer
+	• Vector Image Layer
+	• Interacting with Vector Layer
+	• Heatmap and Graticules
+	• Styling Vector Layers
+		• Styling of Polygon and Line Features
+		• Styling of Point Feature
+		• External Image for Point Feature
+		• Attribute based styling
+• Projections
+	• Custom Projection in OpenLayers
+	• Coordinate Transformation
+	• On the fly Data Transformation
+• Interactions with Map
+	• Select Interaction
+	• Modify Interaction
+	• DragAndDrop Interaction
+• Map methods and Controls in map
+	• Styling Controls
+	• Adding Custom Controls
+• Custom Controls in Openlayers
+• Mobile
+	• Geolocation Services
+	• Sense of Direction
+
+
+
+
+
+Deploying your app
+You can make edits to the index.html, main.js, or style.css files and see the 
+resulting change in your browser while running the development server (with npm start). 
+After you have finished making edits, it is time to bundle or build your application so 
+that it can be deployed as a static website (without needing to run a development 
+server like Vite).
+
+To build your application, run the following:
+
+npm run build
+
+This will create a dist directory with a new index.html and assets that make up your 
+application. These dist files can be deployed with your production website.
+

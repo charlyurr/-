@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>City of Cape Town Parks</title>
+  </head>
+  <body>
+    <!--  -->
+    <!-- View data in a table format -->
+    <!--  -->
+    <div id="table-view" class="hidden">
+      <button id="close-button">Close</button>
+      <table>
+          <thead>
+              <tr>
+                  <th>Park Name</th>
+                  <th>Address</th>
+                  <th>Play Equipment</th>
+                  <th>Sub Area</th>
+              </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+      </table>
+  </div>
+  <!--  -->
+  <!-- End if view data in table format -->
+  <!--  -->
+    <div id="header-label-container">
+      <h1 id="header-label">City of Cape Town Open Parks by Charles Runhare</h1>
+    </div>
+    <div id="side-panel-container">
+        <h1 id="side-panel-header">Parks</h1>
+        <h3 id="side-panel-summary-header">Summary</h3>
+        <h4 id="side-panel-summary-text">This dataset shows the locations of all City owned, public open space, Horticulturally managed by the Recreation and Parks Department.</h4>
+        <a id="view-full-details-button" class="button" href="https://odp-cctegis.opendata.arcgis.com/datasets/cctegis::parks/about">View Full Details</a>
+        <button id="download-button" class="button">Download</button>
+        <!-- Details -->
+        <h2 class="summary-label">Details</h2>
+          <div id="side-panel-details-summary">
+            <div class="summary-item">
+              <i class="fas fa-database summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Feature Layer</span>
+                <span class="summary-value">Dataset</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-info-circle summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Info Updated</span>
+                <span class="summary-value">8 February 2019</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-clock summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Data Updated</span>
+                <span class="summary-value">8 June 2023</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-calendar-check summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Published Date</span>
+                <span class="summary-value">8 February 2019</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-calendar-alt summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">View data table</span>
+                <span class="summary-value">Records: 5,929</span>
+              </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-globe summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Public</span>
+                <span class="summary-value">Anyone can see this content</span>
+            </div>
+            </div>
+            <div class="summary-item">
+              <i class="fas fa-key summary-icon"></i>
+              <div class="summary-content">
+                <span class="summary-label">Custom License</span>
+              <span class="summary-value">View Licence Details</span>
+              </div>
+            </div>
+          </div>
+    </div>
+    <!-- Map Container -->
+    <div id="map"></div> 
+    <!-- Tooltip Element -->
+    <div id="tooltip" class="tooltip"></div>
+    <!-- <span id="status">&nbsp;</span> -->
+    <div id="tools">
+      <a id="clear">Clear</a>
+      <a id="download" download="features.json">Download</a>
+    </div>    
+    <!--  -->
+    <div id="tools-container">
+      <div id="edit-icons-wrapper">
+        <div id="edit-icon" class="tool-icon"><i class="fas fa-edit" data-tooltip="Edit Feature"></i></div>
+        <div id="draw-icon" class="tool-icon"><i class="fas fa-pen" data-tooltip="Draw New Feature"></i></div>
+      </div>
+      <!-- search park -->
+      <div id="search-icon" class="tool-icon">&#x1F50D;</div>
+      <div id="search-popup" class="search-popup hidden">
+        <input type="text" id="searchInput" placeholder="Enter Park Name">
+        <button id="searchButton">Search</button>
+      </div>
+      <!-- table icon to display data-->
+      <i id="table-icon" class="fas fa-table table-icon"></i>
+    </div>
+    <script 
+    type="module" 
+    src="./main.js"
+    ></script>
+  </body>
+</html>

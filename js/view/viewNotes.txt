@@ -1,0 +1,10 @@
+This folder contains files responsible for rendering 
+the UI elements and handling user interactions. You might have a
+geojsonView.js file to render 
+GeoJSON features on the map and handle drag and drop interactions.
+
+
+View: The view is responsible for rendering the data to the user
+ interface. It includes elements like maps and tooltips. 
+ The function addPolygonHoverTooltip would be part of the view 
+ layer, as it deals with the presentation and interaction aspects.

@@ -1,0 +1,46 @@
+sss;
+
+// Setting up Git and githup
+// 1 download git
+
+cd /Users/charlesrunhare/Downloads/TJAY/CR_DEV/complete-javascript-course-master/18-forkify
+git init 
+
+// Open an account on GitHub
+// Connect local & remote
+   //!  git config --global user.name charlesrunhare   
+   //!  git config --global user.email ....
+
+// ? Git fundamentals
+   git add -A
+
+
+//    git status
+
+git commit -m 'intial commit'
+
+// fixing a bug
+git reset --hard HEAD 
+
+
+// 
+git log 
+
+git reset --hard <ID> 
+
+git branch 
+
+// create new branch
+git branch dev
+
+// swith to branch
+git checkout dev 
+
+// merge 
+git merge <branch to merge>
+
+
+// Pushing to gitHub
+// Create repo on gitHub , push local to remote
+
+

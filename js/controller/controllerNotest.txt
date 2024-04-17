@@ -1,0 +1,4 @@
+This folder contains files responsible for handling user 
+input and updating the Model and View accordingly. You might 
+have a geojsonController.js file to manage interactions related 
+to GeoJSON features, such as downloading features.
