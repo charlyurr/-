@@ -4,13 +4,6 @@ html, body {
   margin: 0;
   height: 100%;
 }
-/* #map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-} */
-
 #map {
   position: absolute;
   top: 0;
@@ -59,9 +52,7 @@ html, body {
   max-height: calc(100% - 70px); /* Set maximum height to fill remaining space */
   background-color: #f0f0f0;
   position: fixed; /* Ensure the panel stays fixed in the viewport */
-  /* left: 0; Position the panel on the left side */
   top: 70px; /* Adjust top position as needed */
-  /* margin-top: 70px; */
   padding-left: 15px;
   box-sizing: border-box;
   overflow-y: auto; /* Enable vertical scrolling if content overflows */
@@ -88,10 +79,8 @@ html, body {
   margin-top: 5px; /* Add margin to the top */
   font-weight: normal;
 }
-/* I want to create 2 buttons on the side, which fits inside the side pane
-first one should have label'View Full Details, linking to a url qith full details,
-thensecond button bellow it should be Downlad, same width' */
-/* styles.css */
+
+/* side pannel button styles */
 #side-panel-buttons-container {
   position: absolute;
   top: 1rem;
@@ -239,7 +228,6 @@ thensecond button bellow it should be Downlad, same width' */
 }
 #edit-icons-wrapper {
   background-color: white;
-  /* padding: 40px; Adjust padding as needed */
   padding: 20px;
   width: 20px;
   height: 70px;
@@ -285,45 +273,6 @@ thensecond button bellow it should be Downlad, same width' */
   border-radius: 5px;
 }
 
-/* #tools-container {
-  position: absolute;
-  top: 90px;
-  right: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  margin-right: 30px;
-} */
-
-/* #table-container {
-  top: 90px;
-  right: 100px;
-  display: flex;
-  width: 1400px;
-  height: 1000px;
-  background-color: rgb(197, 192, 205);
-
-} */
-/* Styling for viewing data in a table format */
-/* styles.css */
-/* #table-view {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  height: 100%; 
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  background-color: rgb(255, 255, 255);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: 80vh;
-  overflow-y: auto;
-  z-index: 999;
-  font-size: 24px;
-  color: rgb(76,76,76);
-  width: 1450px;
-  margin-left: 200px;
-} */
 #table-view {
   position: fixed;
   top: 50%;
@@ -332,15 +281,11 @@ thensecond button bellow it should be Downlad, same width' */
   padding: 20px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  /* max-height: 98vh; */
   max-height: 60vh;
   overflow-y: auto;
   z-index: 1000;
-  /* font-size: 24px; */
   color: rgb(76,76,76);
   width: 1450px;
-  /* height: 1000px; */
-  /* height: 100%; */
   margin-left: 200px;
   margin-top: 86px;
   /* margin-bottom: 186px; */

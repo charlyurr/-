@@ -10,9 +10,10 @@ export class MapController {
    * @param {MapModel} model - The model instance.
    * @param {MapView} view - The view instance.
    */
-  constructor(targetElement) {
+  constructor() {
+    this.targetElement = document.getElementById("map");
     this.mapModel = new MapModel();
-    this.mapView = new MapView(targetElement);
+    this.mapView = new MapView(this.targetElement);
     // this.searchButton = document.getElementById("searchButton");
     // this.searchInput = document.getElementById("searchInput");
     // this.searchButton.addEventListener("click", this.searchPark.bind(this));
@@ -99,23 +100,6 @@ export class MapController {
       console.error("Failed to load more records:", error);
     }
   }
-  // async handleLoadMoreRecords() {
-  //   try {
-  //     const newRecords = this.mapModel.loadMoreRecords();
-  //     // this.mapView.displayRecords(this.mapModel.data[0]);
-  //     this.mapView.displayRecords(newRecords);
-
-  //     console.log("newRecords :", newRecords);
-
-  //     // Fetch more records from the model
-  //     // const newRecords = await this.model.fetchMoreRecords();
-
-  //     // Append the new records to the view
-  //     // this.mapView.appendRecords(newRecords);
-  //   } catch (error) {
-  //     console.error("Failed to load more records:", error);
-  //   }
-  // }
 
   /**
    * Search for a park
