@@ -35,14 +35,13 @@ export class MapView {
     this.searchButton = document.getElementById("searchButton");
     this.searchInput = document.getElementById("searchInput");
     // this.searchButton.addEventListener("click", this.searchPark.bind(this));
-
-    /**
-     * Creates an instance of MapView.
-     */
     this.tableView = document.getElementById("table-view");
     this.closeButton = document.getElementById("close-button");
     this.tableBody = this.tableView.querySelector("tbody");
     this.tableIcon = document.getElementById("table-icon");
+    // Load more
+    this.tableBody = document.getElementById("table-body");
+    this.loadMoreButton = document.getElementById("load-more-button");
     this.bindEvents();
   }
 
@@ -91,6 +90,10 @@ export class MapView {
     }
   }
 
+  bindLoadMore(handler) {
+    this.loadMoreButton.addEventListener("click", handler);
+  }
+
   /**
    * Displays records in the table view.
    * @param {Array} records - An array of records.
@@ -118,6 +121,31 @@ export class MapView {
       throw new Error(`Failed to display records`, error);
     }
   }
+
+  /**
+   * Append more records to the table view.
+   * @param {Array} newRecords - An array of new records to append.
+   */
+  appendRecords(newRecords) {
+    try {
+      // Render each new record and append it to the table
+      newRecords.forEach((record) => {
+        const row = document.createElement("tr");
+
+        // Iterate over the keys of the record object
+        Object.keys(record).forEach((key) => {
+          const cell = document.createElement("td");
+          cell.textContent = record[key]; // Set cell content to the value of the current key
+          row.appendChild(cell);
+        });
+
+        this.tableBody.appendChild(row);
+      });
+    } catch (error) {
+      throw new Error(`Failed to append records`, error);
+    }
+  }
+
   // highlight current row
   highlightCurrentRowOnTable() {
     // Get all table rows

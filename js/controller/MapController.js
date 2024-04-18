@@ -24,6 +24,8 @@ export class MapController {
     // Register event handler in the model
     //this.mapView.renderPopup(this.mapModel.handleDrawnFeature.bind(this));
     this.mapModel.onFeatureDrawn = this.handleFeatureDrawn.bind(this);
+    //
+    this.mapView.bindLoadMore(this.handleLoadMoreRecords.bind(this));
     this.init();
   }
 
@@ -89,9 +91,31 @@ export class MapController {
    * Handles the loadMoreRecords event.
    */
   handleLoadMoreRecords() {
-    this.mapModel.loadMoreRecords();
-    this.mapView.displayRecords(this.mapModel.data[0]);
+    try {
+      this.mapModel.loadMoreRecords();
+      // this.mapView.displayRecords(this.mapModel.data[0]);
+      this.mapView.displayRecords(this.mapModel.getRecords());
+    } catch (error) {
+      console.error("Failed to load more records:", error);
+    }
   }
+  // async handleLoadMoreRecords() {
+  //   try {
+  //     const newRecords = this.mapModel.loadMoreRecords();
+  //     // this.mapView.displayRecords(this.mapModel.data[0]);
+  //     this.mapView.displayRecords(newRecords);
+
+  //     console.log("newRecords :", newRecords);
+
+  //     // Fetch more records from the model
+  //     // const newRecords = await this.model.fetchMoreRecords();
+
+  //     // Append the new records to the view
+  //     // this.mapView.appendRecords(newRecords);
+  //   } catch (error) {
+  //     console.error("Failed to load more records:", error);
+  //   }
+  // }
 
   /**
    * Search for a park

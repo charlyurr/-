@@ -112,9 +112,9 @@ export class MapModel {
   getRecords() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-
-    console.log("this.data", this.data); // available
-    return this.data.slice(startIndex, endIndex);
+    // return this.data.slice(startIndex, endIndex);
+    // console.log("this.data.slice(startIndex, 3): ", this.data[0].slice(1, 8));
+    return this.data[0].slice(startIndex, endIndex);
   }
 
   /**

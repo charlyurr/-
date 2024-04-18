@@ -12,7 +12,7 @@
     <!--  -->
     <!-- View data in a table format -->
     <!--  -->
-      <div id="table-view" class="hidden">
+      <div id="table-view" class="hidden general">
         <div id="close-table-button-wrapper">
           <button id="close-button">Close Table</button>
         </div>
@@ -28,21 +28,25 @@
             </thead>
             <tbody id="table-body"></tbody>
         </table>
+        <div id="load-more-container">
+          <button id="load-more-button">Load More</button>
+        </div>
     </div>
     <!--  -->
     <!-- End of view data in table format -->
     <!--  -->
     <div id="header-label-container">
-      <h1 id="header-label">City of Cape Town Open Parks by Charles Runhare</h1>
+      <h1 id="header-label">City of Cape Town Open Parks (reproduced by Charles Runhare)</h1>
     </div>
     <div id="side-panel-container">
-        <h1 id="side-panel-header">Parks</h1>
+        <h1 id="side-panel-header" class="general">Parks</h1>
         <h3 id="side-panel-summary-header">Summary</h3>
-        <h4 id="side-panel-summary-text">This dataset shows the locations of all City owned, public open space, Horticulturally managed by the Recreation and Parks Department.</h4>
-        <a id="view-full-details-button" class="button" href="https://odp-cctegis.opendata.arcgis.com/datasets/cctegis::parks/about">View Full Details</a>
-        <button id="download-button" class="button">Download</button>
+        <h4 id="side-panel-summary-text" class="general">This dataset shows the locations of all City owned, public open space, Horticulturally managed by the Recreation and Parks Department.</h4>
+        <a id="view-full-details-button" class="button general" href="https://odp-cctegis.opendata.arcgis.com/datasets/cctegis::parks/about">View Full Details</a>
+          <button id="download-button" class="button general">Download</button>
         <!-- Details -->
-        <h2 class="summary-label">Details</h2>
+        <div id="details-container">
+          <h2 class="summary-label">Details</h2>
           <div id="side-panel-details-summary">
             <div class="summary-item">
               <i class="fas fa-database summary-icon"></i>
@@ -94,6 +98,7 @@
               </div>
             </div>
           </div>
+        </div>
     </div>
     <!-- Map Container -->
     <div id="map"></div> 

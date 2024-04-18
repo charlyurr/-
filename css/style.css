@@ -16,7 +16,7 @@ html, body {
   top: 0;
   bottom: 0;
   margin-top: 70px; /* Move the map down by 10 pixels */
-  margin-left: 400px;
+  margin-left: 550px;
   /* width: 100%; */
   width: calc(100% - 400px); /* Adjust map width to fit remaining space */
 }
@@ -47,15 +47,15 @@ html, body {
 #header-label {
   padding-left: 10px; /* Adjust padding to move text inside towards the right */
   align-items: center;
-  font-family: Arial, sans-serif; /* Specify the font type */
+  font-family: 'Montserrat', serif; /* Specify the font type */
   font-weight: normal; /* Specify a lighter font weight for slim characters */
-  /* color: brown; */
+  background-color: rgb(249,249,249);
 }
 /* 
 /* styles.css */
 
 #side-panel-container {
-  width: 400px; /* Adjust width as needed */
+  width: 550px; /* Adjust width as needed */
   max-height: calc(100% - 70px); /* Set maximum height to fill remaining space */
   background-color: #f0f0f0;
   position: fixed; /* Ensure the panel stays fixed in the viewport */
@@ -71,21 +71,19 @@ html, body {
 
 #side-panel-header h1 {
   font-size: 24px; /* Specify the font size */
-  font-family: Arial, sans-serif; /* Specify the font type */
+  font-family: "Times New Roman", Times, serif; 
   font-weight: bold; /* Make the header bold */
   margin-top: 20px; /* Add margin to the top */
 }
 
 #side-panel-summary-header {
   font-size: 25px; /* Specify the font size */
-  font-family: Arial, sans-serif; /* Specify the font type */
+  font-family: "Times New Roman", Times, serif; /* Specify the font type */
   font-weight: bold; /* Make the header bold */
   margin-top: 10px; /* Add margin to the top */
 }
 
 #side-panel-summary-text {
-  font-size: 25px; /* Specify the font size */
-  font-family: Arial, sans-serif; /* Specify the font type */
   color:rgb(76,76,76); /* Set the text color */
   margin-top: 5px; /* Add margin to the top */
   font-weight: normal;
@@ -124,12 +122,19 @@ thensecond button bellow it should be Downlad, same width' */
 #view-full-details-button {
   background-color: rgb(86, 160, 192);
   color: white;
+  width: 480px;
 }
 
 #download-button {
   background-color: white;
   color: rgb(86, 160, 192);
+  border: 1.5px solid rgb(86, 160, 192);
+  width: 515px;
 }
+
+/* .button-container {
+  margin-top: 20px; 
+} */
 
 #side-panel-details-summary {
   margin-top: 20px; /* Add margin to the top */
@@ -143,9 +148,9 @@ thensecond button bellow it should be Downlad, same width' */
 
 .summary-label {
   margin-left: 10px;
-  font-weight: bold; /* Make labels bold */
+  font-weight: normal; /* Make labels bold */
   margin-right: 10px; /* Add margin to the right */
-  font-size: 24px;
+  font-size: 25px;
 }
 
 .summary-value {
@@ -156,7 +161,7 @@ thensecond button bellow it should be Downlad, same width' */
 
 .summary-icon {
   margin-right: 10px; /* Adjust margin between icon and text */
-  color: rgb(76,76,76);
+  color: rgb(149, 137, 137);
 }
 
 .summary-icon {
@@ -172,6 +177,13 @@ thensecond button bellow it should be Downlad, same width' */
    justify-self: flex-start;
    text-align: left;
   color: rgb(76,76,76);
+}
+
+#details-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 /* Define CSS styles for the tooltip */
@@ -262,16 +274,6 @@ thensecond button bellow it should be Downlad, same width' */
   z-index: 1000;
 }
 
-#close-table-button-wrapper0 {
-  padding: 20px;
-  width: 20px;
-  /* height: 5px; */
-  align-items: center;
-  /* margin-right: 20px; */
-  /* margin: 20px; */
-  /* margin-bottom: 10px; */
-}
-
 /* Search for park icons styling */
 .search-popup {
   position: absolute;
@@ -330,10 +332,11 @@ thensecond button bellow it should be Downlad, same width' */
   padding: 20px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  max-height: 98vh;
+  /* max-height: 98vh; */
+  max-height: 60vh;
   overflow-y: auto;
   z-index: 1000;
-  font-size: 24px;
+  /* font-size: 24px; */
   color: rgb(76,76,76);
   width: 1450px;
   /* height: 1000px; */
@@ -415,4 +418,30 @@ th {
   border: 1px solid #ccc;
   padding: 5px;
   cursor: pointer;
+}
+
+
+/* load more styles */
+#load-more-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+#load-more-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#load-more-button:hover {
+  background-color: #0056b3;
+}
+
+.general {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
 }
