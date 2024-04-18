@@ -306,3 +306,12 @@ th {
   width: 100%; /* Make the image fill the container */
   height: 100%; /* Make the image fill the container */
 }
+
+
+.popup {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 5px;
+  cursor: pointer;
+}

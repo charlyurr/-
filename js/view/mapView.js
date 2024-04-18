@@ -3,11 +3,9 @@ import GeoJSON from "ol/format/GeoJSON";
 import VectorLayer from "ol/layer/Vector";
 import Modify from "ol/interaction/Modify";
 import Link from "ol/interaction/Link";
-import Draw from "ol/interaction/Draw"; // import the Draw interaction
 import Snap from "ol/interaction/Snap"; //import the Snap interaction
 import { Style, Fill, Stroke } from "ol/style";
 import { MapModel } from "../model/MapModel";
-const map = new MapModel();
 
 /**
  * MapView(user-interface)(files responsible for rendering the UI 
@@ -61,6 +59,11 @@ export class MapView {
     );
   }
 
+  bindDrawPolygon(handler) {
+    const drawIcon = document.getElementById("draw-icon"); // Get the draw icon element
+    drawIcon.addEventListener("click", handler); // Bind click event to the draw icon
+  }
+
   /**
    * Handles the click event on the table icon.
    */
@@ -92,15 +95,6 @@ export class MapView {
    * Displays records in the table view.
    * @param {Array} records - An array of records.
    */
-  // FIXME: this seems not to be used
-  // displayRecords(records) {
-  //   records.forEach((record) => {
-  //     const row = document.createElement("tr");
-  //     row.innerHTML = `<td>${record}</td>`;
-  //     this.tableBody.appendChild(row);
-  //   });
-  // }
-
   displayRecords(records) {
     try {
       // Clear existing table rows
@@ -123,41 +117,6 @@ export class MapView {
       throw new Error(`Failed to display records`, error);
     }
   }
-
-  // // Modified displayRecords function to render records in a table
-  // displayRecords(records) {
-  //   console.log("records: ", records); // FIXdME: Records is empty
-  //   try {
-  //     // Clear existing table rows
-  //     this.tableBody.innerHTML = "";
-
-  //     // Render each record in a table row
-  //     records.forEach((record) => {
-  //       console.log("record: ", record); // FIXdME: reaching here
-  //       const row = document.createElement("tr");
-  //       console.log("row", row); // multiple objects as <td> Object Object </td>
-  //       Object.values(record).forEach((value) => {
-  //         // console.log("value: ", value); // getting here
-  //         /**
-  //          * each value now has the following:
-  //          *  "Park Name",
-  //          *  "Park Type",
-  //          *  "Access Address",
-  //          *  "Play Equip",
-  //          *  "Sub Area",
-  //          * but row has object
-  //          */
-  //         const cell = document.createElement("td");
-  //         cell.textContent = value;
-  //         row.appendChild(cell);
-  //       });
-  //       console.log("row: ", row); // why is row an object. I am expecting to disply this as a table
-  //       this.tableBody.appendChild(row);
-  //     });
-  //   } catch (error) {
-  //     throw new Error(`Failed to display records`, error);
-  //   }
-  // }
 
   /**
    * Loads records from the model.
@@ -255,6 +214,30 @@ export class MapView {
     });
   }
 
+  /** FIXME: not working properly
+   *
+   * Popup with options for new feature e.g delete feature
+   * @param {*} feature
+   */
+  renderPopup(feature) {
+    console.log("feature: ", feature);
+    const popup = document.createElement("div");
+    popup.innerHTML = "Delete Feature";
+    popup.className = "popup";
+
+    popup.addEventListener("click", () => {
+      // Call the controller method to delete the feature
+      this.controller.handleDeleteFeature(feature);
+    });
+
+    // Add popup to the DOM or map container
+    // You can use your preferred method to display the popup
+    // For example, you can append it to the map container
+    // this.mapElement.appendChild(popup);
+    // this.targetElement.appendChild(popup); //FIXME: Uncaught TypeError: this.targetElement.appendChild is not a function
+    console.log("popup: ", popup);
+  }
+
   /**
    * Render geojson data with the provided map model.
    * @param {MapModel} mapModel - The map model containing map data.
@@ -291,23 +274,6 @@ export class MapView {
 
       // Add Link interaction to the map
       this.mapModel.map.addInteraction(new Link());
-
-      /**
-       * Draw new features
-       */
-      document.getElementById("draw-icon").addEventListener("click", () => {
-        // Activate drawing functionality
-        // Now, create a draw interaction configured to draw
-        // polygons and add them to our vector source:
-        // With our draw interaction in place, we can now add new
-        // features to our vector source.
-        this.mapModel.map.addInteraction(
-          new Draw({
-            type: "Polygon",
-            source: this.mapModel.vectorSource,
-          })
-        );
-      });
 
       /**
        * Snap features

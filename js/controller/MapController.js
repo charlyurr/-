@@ -17,6 +17,13 @@ export class MapController {
     // this.searchInput = document.getElementById("searchInput");
     // this.searchButton.addEventListener("click", this.searchPark.bind(this));
     this.mapView.bindSearchPark(this.handleSearchPark.bind(this));
+    this.mapView.controller = this; // Set the controller reference in the view
+    // this.drawIconElement = drawIconElement; //FIXME: doesn't seem to be used
+    // FIXME: consider remove line below
+    this.mapView.bindDrawPolygon(this.handleDrawPolygon.bind(this)); // Bind the draw polygon action
+    // Register event handler in the model
+    //this.mapView.renderPopup(this.mapModel.handleDrawnFeature.bind(this));
+    this.mapModel.onFeatureDrawn = this.handleFeatureDrawn.bind(this);
     this.init();
   }
 
@@ -53,6 +60,23 @@ export class MapController {
   }
 
   /**
+   * Handle draw polygon
+   */
+  handleDrawPolygon() {
+    this.mapModel.drawPolygon();
+    // this.mapModel.draw.setActive(true);
+  }
+
+  handleFeatureDrawn(feature) {
+    this.mapView.renderPopup(feature);
+  }
+
+  handleDeleteFeature(feature) {
+    // Call the model method to delete the feature
+    this.mapModel.deleteFeature(feature);
+  }
+
+  /**
    * Binds events between the model and the view.
    */
   bindEvents() {
@@ -67,13 +91,6 @@ export class MapController {
   handleLoadMoreRecords() {
     this.mapModel.loadMoreRecords();
     this.mapView.displayRecords(this.mapModel.data[0]);
-    // console.log("this.mapModel.getRecords(): ", this.mapModel); // FIXdME: empty
-    // // console.log("this.mapModel.getRecords(): ", this.mapModel.data); // FIXdME: empty
-    // console.log("handleLoadMoreRecords(this.mapModel): ", this.mapModel); //  data available here
-    // console.log(
-    //   "handleLoadMoreRecords(this.mapModel.data): ",
-    //   this.mapModel.data
-    // ); //  data available here
   }
 
   /**

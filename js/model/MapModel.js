@@ -3,6 +3,7 @@ import TileLayer from "ol/layer/Tile";
 import OSM from "ol/source/OSM";
 import VectorSource from "ol/source/Vector";
 import GeoJSON from "ol/format/GeoJSON";
+import Draw from "ol/interaction/Draw"; // import the Draw interaction
 
 /**
  * MapModel[data](application's data and business logic)
@@ -39,6 +40,57 @@ export class MapModel {
     this.data = []; // Store fetched data
     this.pageSize = 25; // Maximum records per page
     this.currentPage = 1; // Current page number
+    this.onFeatureDrawn = null; // Callback function when a feature is drawn
+  }
+
+  /**
+   * Draw polygon
+   */
+  drawPolygon() {
+    // document.getElementById("draw-icon").addEventListener("click", () => {
+    //   // Activate drawing functionality
+    //   // Now, create a draw interaction configured to draw
+    //   // polygons and add them to our vector source:
+    //   // With our draw interaction in place, we can now add new
+    //   // features to our vector source.
+    //   this.mapModel.map.addInteraction(
+    //     new Draw({
+    //       type: "Polygon",
+    //       source: this.mapModel.vectorSource,
+    //     })
+    //   );
+    // });
+    // // Add event listener to start drawing a polygon
+    // const draw = this.map.addInteraction(
+    //   new Draw({
+    //     type: "Polygon",
+    //     source: this.vectorSource,
+    //   })
+    // );
+
+    const draw = new Draw({
+      type: "Polygon",
+      source: this.vectorSource,
+    });
+
+    draw.on("drawend", (event) => {
+      // const drawnFeature = event.feature;
+      // //this.view.renderPopup(drawnFeature); // DOnt access the view directly, trigger an event as below
+      // this.handleDrawnFeature(drawnFeature);
+      if (this.onFeatureDrawn) {
+        this.onFeatureDrawn(event.feature); // Instead of directly interacting with the view, trigger an event
+      }
+    });
+
+    this.map.addInteraction(draw);
+  }
+
+  /**
+   * Delete feature
+   */
+  deleteFeature(feature) {
+    // Delete the specified feature from the vector source
+    this.vectorSource.removeFeature(feature);
   }
 
   /**
@@ -56,15 +108,7 @@ export class MapModel {
           }
         });
       });
-      // console.log("features: ", features[0].values_.PARK_NAME);
-      // //  I want to return
-      // // "PARK_NAME": as Park Name
-      // // "LU_PARK_TYPE": as Park Type,
-      // // "ACS_ADR": as Access Address,
-      // // "PLAY_EQPM": as Play Equip,
-      // // "SUB_AREA":  as Sub Area
-      // return (this.data = features[0].values_.PARK_NAME);
-      // Map features to objects with specific properties
+
       const result = features.map((feature) => ({
         "Park Name": feature.values_.PARK_NAME,
         "Park Type": feature.values_.LU_PARK_TYPE,
@@ -72,8 +116,6 @@ export class MapModel {
         "Play Equip": feature.values_.PLAY_EQPM,
         "Sub Area": feature.values_.SUB_AREA,
       }));
-
-      // console.log("data: ", data); // data being rendered
 
       this.data.push(result);
 
@@ -135,50 +177,3 @@ export class MapModel {
     }
   }
 }
-
-// export class MapModel {
-//   constructor() {
-//     this.map = new Map({
-//       layers: [
-//         new TileLayer({
-//           source: new OSM(), // loading
-//         }),
-//       ],
-//       view: new View({
-//         center: [18.511463450922804, -33.94418730405998],
-//         zoom: 12,
-//         projection: "EPSG:4326",
-//         extent: [-2000, -2000, 2000, 2000],
-//         rotation: 0,
-//       }),
-//     });
-//     // Get data
-//     this.vectorSource = new VectorSource({
-//       format: new GeoJSON(),
-//       url: "../../assets/Parks.geojson",
-//     });
-//   }
-
-//   // Get park coodinates
-//   // Model: The model will contain the park data and provide methods to search for parks by name.
-//   // getParkCoordinates(parkName) {
-//   //   // Function to retrieve park coordinates by name from the model
-//   //   // You should implement this method according to your data source
-//   //   // For demonstration purposes, let's assume we have a hard-coded dataset
-//   //   const parkData = {
-//   //     "Central Park": [-73.9708, 40.7851],
-//   //     "Golden Gate Park": [-122.4757, 37.7694],
-//   //     "Yosemite National Park": [-119.5383, 37.8651],
-//   //   };
-
-//   //   return parkData[parkName];
-//   // }
-//   searchParkByName(name) {
-//     console.log("this.vectorSource: ", this.vectorSource);
-//     console.log("name: ", name);
-//     const park = this.vectorSource.features.find(
-//       (park) => park.properties.PARK_NAME === name
-//     );
-//     return park ? park.geometry.coordinates : null;
-//   }
-// }
