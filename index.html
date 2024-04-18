@@ -12,23 +12,26 @@
     <!--  -->
     <!-- View data in a table format -->
     <!--  -->
-    <div id="table-view" class="hidden">
-      <button id="close-button">Close</button>
-      <table>
-          <thead>
-              <tr>
-                  <th>Park Name</th>
-                  <th>Address</th>
-                  <th>Play Equipment</th>
-                  <th>Sub Area</th>
-              </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
-      </table>
-  </div>
-  <!--  -->
-  <!-- End if view data in table format -->
-  <!--  -->
+      <div id="table-view" class="hidden">
+        <div id="close-table-button-wrapper">
+          <button id="close-button">Close Table</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Park Name</th>
+                    <th>Park Type</th>
+                    <th>Access Address</th>
+                    <th>Play Equip</th>
+                    <th>Sub Area</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+    <!--  -->
+    <!-- End of view data in table format -->
+    <!--  -->
     <div id="header-label-container">
       <h1 id="header-label">City of Cape Town Open Parks by Charles Runhare</h1>
     </div>
@@ -92,7 +95,6 @@
             </div>
           </div>
     </div>
-    
     <!-- Map Container -->
     <div id="map"></div> 
     <!-- Tooltip Element -->
@@ -104,18 +106,24 @@
     </div>    
     <!--  -->
     <div id="tools-container">
-      <div id="edit-icons-wrapper">
-        <div id="edit-icon" class="tool-icon"><i class="fas fa-edit" data-tooltip="Edit Feature"></i></div>
-        <div id="draw-icon" class="tool-icon"><i class="fas fa-pen" data-tooltip="Draw New Feature"></i></div>
-      </div>
       <!-- search park -->
-      <div id="search-icon" class="tool-icon">&#x1F50D;</div>
+      <div id="search-icon-wrapper">
+        <div id="search-icon" class="tool-icon">&#x1F50D;</div>
+      </div>
       <div id="search-popup" class="search-popup hidden">
         <input type="text" id="searchInput" placeholder="Enter Park Name">
         <button id="searchButton">Search</button>
       </div>
+      <!-- end of search park html -->
+      <div id="edit-icons-wrapper">
+        <div id="edit-icon" class="tool-icon"><i class="fas fa-edit" data-tooltip="Edit Feature"></i></div>
+        <div id="draw-icon" class="tool-icon"><i class="fas fa-pen" data-tooltip="Draw New Feature"></i></div>
+      </div>
+      <!-- //////////////////// -->
       <!-- table icon to display data-->
-      <i id="table-icon" class="fas fa-table table-icon"></i>
+      <div id="table-icon-wrapper">
+      <i id="table-icon" class="fas fa-table tool-icon"></i>
+    </div>
     </div>
     <script 
     type="module" 

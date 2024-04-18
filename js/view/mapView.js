@@ -113,9 +113,37 @@ export class MapView {
 
         this.tableBody.appendChild(row);
       });
+      this.highlightCurrentRowOnTable();
     } catch (error) {
       throw new Error(`Failed to display records`, error);
     }
+  }
+  // highlight current row
+  highlightCurrentRowOnTable() {
+    // Get all table rows
+    const rows = this.tableBody.querySelectorAll("tr");
+
+    // Add event listeners to each row
+    rows.forEach((row) => {
+      // Add event listener to handle mouse movement over the row
+      row.addEventListener("mouseover", () => {
+        // Remove highlighting from all rows
+        rows.forEach((row) => {
+          row.classList.remove("highlighted-row");
+        });
+
+        // Highlight the current row
+        row.classList.add("highlighted-row");
+      });
+
+      // Add event listener to handle mouse leaving the row
+      row.addEventListener("mouseleave", () => {
+        // Remove highlighting from all rows
+        rows.forEach((row) => {
+          row.classList.remove("highlighted-row");
+        });
+      });
+    });
   }
 
   /**

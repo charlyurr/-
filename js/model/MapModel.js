@@ -47,27 +47,6 @@ export class MapModel {
    * Draw polygon
    */
   drawPolygon() {
-    // document.getElementById("draw-icon").addEventListener("click", () => {
-    //   // Activate drawing functionality
-    //   // Now, create a draw interaction configured to draw
-    //   // polygons and add them to our vector source:
-    //   // With our draw interaction in place, we can now add new
-    //   // features to our vector source.
-    //   this.mapModel.map.addInteraction(
-    //     new Draw({
-    //       type: "Polygon",
-    //       source: this.mapModel.vectorSource,
-    //     })
-    //   );
-    // });
-    // // Add event listener to start drawing a polygon
-    // const draw = this.map.addInteraction(
-    //   new Draw({
-    //     type: "Polygon",
-    //     source: this.vectorSource,
-    //   })
-    // );
-
     const draw = new Draw({
       type: "Polygon",
       source: this.vectorSource,
