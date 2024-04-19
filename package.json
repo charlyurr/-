@@ -4,9 +4,11 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "jslint /Users/charlesrunhare/personal/web-gis-dev/webgis-cct-parks/"
   },
   "devDependencies": {
+    "jslint": "^0.12.1",
     "vite": "^5.2.8"
   },
   "dependencies": {
